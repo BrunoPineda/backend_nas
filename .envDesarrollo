@@ -1,0 +1,56 @@
+# Server
+# URL completa del servidor. Puede ser: http://localhost:3000 (por defecto) o una URL completa como https://fighters-shirt-ira-unity.trycloudflare.com
+SERVER_URL=http://localhost:3000
+NODE_ENV=development
+
+# SQL Server (Microsoft SQL Server / Azure SQL)
+# Variables que suele leer el backend con el driver `mssql` (process.env).
+MSSQL_SERVER=DESKTOP-RU69LKD
+MSSQL_PORT=1433
+MSSQL_DATABASE=DB_NAS
+MSSQL_USER=admin
+MSSQL_PASSWORD=123456
+MSSQL_ENCRYPT=true
+MSSQL_TRUST_SERVER_CERTIFICATE=true
+
+# Si falla con ESOCKET en 1433: (1) SQL Express -> descomenta la siguiente y activa servicio "SQL Server Browser"
+# (el backend quita MSSQL_PORT cuando hay instancia con nombre).
+# MSSQL_INSTANCE=SQLEXPRESS
+# (2) En "SQL Server Configuration Manager" habilita TCP/IP para tu instancia y reinicia SQL Server.
+# (3) Prueba MSSQL_SERVER=127.0.0.1 si el nombre del PC resuelve mal.
+
+# Opcional: una sola cadena en lugar de las variables anteriores (mismo formato que ADO.NET / ODBC).
+# Si tu código prioriza esta variable, puede ignorar MSSQL_* sueltas.
+# MSSQL_CONNECTION_STRING=Server=localhost,1433;Database=almacenamiento;User Id=sa;Password=Adm*2025!;Encrypt=true;TrustServerCertificate=true
+
+# Instancia con nombre: en MSSQL_SERVER usa por ejemplo localhost\SQLEXPRESS (puerto según tu instancia).
+# Azure SQL: Encrypt=true; en producción suele usarse TrustServerCertificate=false y certificados válidos.
+
+# JWT
+JWT_SECRET=tu_secret_super_seguro_cambiar_en_produccion
+JWT_EXPIRES_IN=1h
+JWT_REFRESH_SECRET=tu_refresh_secret_super_seguro_cambiar_en_produccion
+JWT_REFRESH_EXPIRES_IN=7d
+
+# Storage
+# NAS: \\nas-04.juntos.gob.pe\Media  (usuario: nas-videos)
+# La unidad N: debe estar mapeada antes de arrancar el backend:
+#   net use N: \\nas-04.juntos.gob.pe\Media /user:nas-videos "Juntos888#" /persistent:yes
+STORAGE_ROOT_PATH=../storage
+USE_TEMP_STORAGE=false
+TEMP_STORAGE_PATH=./temp
+TEMP_FILE_TTL_MINUTES=1
+
+# File Limits
+MAX_FILE_SIZE_BYTES=1073741824
+MAX_BULK_UPLOAD_FILES=10
+# Use * to allow all file types, or specify comma-separated MIME types
+ALLOWED_MIME_TYPES=*
+
+# Encryption
+FILE_ENCRYPTION_SALT=tu_salt_para_cifrado_cambiar_en_produccion
+
+# CORS
+# Puede ser una URL única o múltiples URLs separadas por comas
+# Las URLs de trycloudflare.com se permiten automáticamente
+CORS_ORIGIN=http://localhost:5173
